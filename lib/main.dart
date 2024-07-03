@@ -1,3 +1,5 @@
+import 'package:excuela_widget_master/user_card/bloc/user_card_bloc.dart';
+import 'package:excuela_widget_master/user_card/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<LoadingScreenBloc>(
             create: (context) => LoadingScreenBloc(),
           ),
+          BlocProvider<UserCardBloc>(create: (context) => UserCardBloc()),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
@@ -30,6 +33,11 @@ class MyApp extends StatelessWidget {
                 path: '/loading',
                 name: 'loadingScreen',
                 builder: (context, state) => const LoadingScreen(),
+              ),
+              GoRoute(
+                path: '/card',
+                name: 'userCard',
+                builder: (context, state) => const UserCard(),
               ),
             ],
           ),

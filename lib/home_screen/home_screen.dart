@@ -14,9 +14,22 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(onPressed: (){
-              context.pushNamed('loadingScreen');
-            }, child: const Text('Loading Screen')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){
+                  context.pushNamed('loadingScreen');
+                }, child: const Text('Loading Screen')),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){
+                  context.pushNamed('userCard');
+                }, child: const Text('User Card')),
+              ],
+            ),
           ],
         )
     );

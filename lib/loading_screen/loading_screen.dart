@@ -48,7 +48,9 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery
+        .of(context)
+        .size;
     final widgetSize = size.height * 0.25;
     final bloc = context.read<LoadingScreenBloc>();
     final List<LoadingAnimationType> types = [
@@ -113,21 +115,26 @@ class LoadingScreen extends StatelessWidget {
               Text('Tipo de animación', style: TextStyle(fontSize: 20)),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DropdownButton<String>(
-                  items: types
-                      .map((e) => DropdownMenuItem<String>(
-                          value: mapTypeToString(e),
-                          child: Text(mapTypeToString(e))))
-                      .toList(),
-                  value: mapTypeToString(bloc.state.loadingAnimationType),
-                  onChanged: (value) {
-                    bloc.add(LoadingScreenEvent.newAnimationSelected(
-                        newAnimationType: stringToMapType(value!)));
-                  })
-            ],
+          BlocBuilder<LoadingScreenBloc, LoadingScreenState>(
+            builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DropdownButton<String>(
+                      items: types
+                          .map((e) =>
+                          DropdownMenuItem<String>(
+                              value: mapTypeToString(e),
+                              child: Text(mapTypeToString(e))))
+                          .toList(),
+                      value: mapTypeToString(state.loadingAnimationType),
+                      onChanged: (value) {
+                        bloc.add(LoadingScreenEvent.newAnimationSelected(
+                            newAnimationType: stringToMapType(value!)));
+                      })
+                ],
+              );
+            },
           ),
           SizedBox(height: size.height * 0.05),
           const Row(
