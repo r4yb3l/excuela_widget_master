@@ -1,3 +1,5 @@
+import 'package:excuela_widget_master/quiz_screen/bloc/quiz_screen_bloc.dart';
+import 'package:excuela_widget_master/quiz_screen/quiz_screen.dart';
 import 'package:excuela_widget_master/user_card/bloc/user_card_bloc.dart';
 import 'package:excuela_widget_master/user_card/user_card.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
             create: (context) => LoadingScreenBloc(),
           ),
           BlocProvider<UserCardBloc>(create: (context) => UserCardBloc()),
+          BlocProvider<QuizScreenBloc>(
+              create: (context) =>
+                  QuizScreenBloc()..add(const QuizScreenEvent.initialize())),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
@@ -38,6 +43,11 @@ class MyApp extends StatelessWidget {
                 path: '/card',
                 name: 'userCard',
                 builder: (context, state) => const UserCard(),
+              ),
+              GoRoute(
+                path: '/quiz',
+                name: 'quizScreen',
+                builder: (context, state) => const QuizScreen(),
               ),
             ],
           ),

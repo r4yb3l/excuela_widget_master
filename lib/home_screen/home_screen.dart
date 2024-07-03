@@ -30,6 +30,14 @@ class HomeScreen extends StatelessWidget {
                 }, child: const Text('User Card')),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){
+                  context.pushNamed('quizScreen');
+                }, child: const Text('Quiz Screen')),
+              ],
+            ),
           ],
         )
     );
