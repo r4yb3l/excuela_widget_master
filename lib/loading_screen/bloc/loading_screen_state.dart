@@ -20,7 +20,7 @@ class LoadingScreenState with _$LoadingScreenState {
 
   factory LoadingScreenState.initial() => const LoadingScreenState(
         loadingAnimationType: LoadingAnimationType.inkDrop,
-        primaryColor: Colors.white,
+        primaryColor: Colors.yellow,
         secondaryColor: Colors.black,
       );
 }
