@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<UserCardBloc>(create: (context) => UserCardBloc()),
           BlocProvider<QuizScreenBloc>(
               create: (context) =>
-                  QuizScreenBloc()..add(const QuizScreenEvent.initialize())),
+                  QuizScreenBloc()..add(const QuizScreenEvent.initialize()))
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

@@ -15,19 +15,26 @@ class QuizScreenBloc extends Bloc<QuizScreenEvent, QuizScreenState> {
       event.when(initialize: () {
         emit(state.copyWith(data: data, currentQuestionIndex: 0));
       }, nextQuestion: () {
+        if (state.currentQuestionIndex == data.questions.length - 1) {
+          emit(state.copyWith(showMetrics: true));
+        }
         emit(state.copyWith(
-            currentQuestionIndex: state.currentQuestionIndex! + 1,
-            currentAnswerResult: null));
+            currentQuestionIndex: state.currentQuestionIndex + 1,
+            currentUserSelectedOption: null,
+            currentAnswerStatus: CurrentQuestionAnswer.empty));
       }, validateAnswer: (int questionIndex, int userAnswerIndex) {
+        emit(state.copyWith(currentUserSelectedOption: userAnswerIndex));
         if (userAnswerIndex ==
             data.questions[questionIndex].correctAnswerIndex) {
           emit(state.copyWith(
               rightAnswerCount: state.rightAnswerCount + 1,
-              currentAnswerResult: true));
+              currentAnswerStatus: CurrentQuestionAnswer.success,
+              enableNextButton: true));
         } else {
           emit(state.copyWith(
               wrongAnswerCount: state.wrongAnswerCount + 1,
-              currentAnswerResult: false));
+              currentAnswerStatus: CurrentQuestionAnswer.failure,
+              enableNextButton: true));
         }
       });
     });
