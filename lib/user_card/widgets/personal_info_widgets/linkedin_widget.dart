@@ -1,5 +1,6 @@
 import 'package:excuela_widget_master/user_card/bloc/user_card_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserCardPersonalInfoWidgetsLinkedinWidget extends StatelessWidget {
@@ -50,6 +51,25 @@ class UserCardPersonalInfoWidgetsLinkedinWidget extends StatelessWidget {
           style: mainDataStyle,
           textAlign: TextAlign.start,
         ),
+        const Expanded(child: SizedBox()),
+        SizedBox(
+          width: 30,
+          height: 30,
+          child: IconButton(
+              onPressed: () {
+                context.read<UserCardBloc>().add(
+                    UserCardEvent.changeLikeValue(
+                        newValue: !state.isLiked));
+              },
+              padding: EdgeInsets.zero,
+              icon: Icon(state.isLiked
+                  ? Icons.favorite
+                  : Icons.favorite_outline),
+              color: state.isLiked ? Colors.red : Colors.blueGrey),
+        ),
+        const SizedBox(
+          width: 10,
+        )
       ],
     );
   }

@@ -11,9 +11,10 @@ class UserCardState with _$UserCardState {
    required String phoneNumber,
    required String location,
    required String additionalData,
+   required bool isLiked,
 }) = _UserCardState;
 
- factory UserCardState.initial() => UserCardState(
+ factory UserCardState.initial() => const UserCardState(
    name: 'Raybel Hernandez',
    email: 'raybel.developer@gmail.com',
    phoneNumber: '+505 88390152',
@@ -21,7 +22,8 @@ class UserCardState with _$UserCardState {
    imageUrl: 'https://media.licdn.com/dms/image/D4E03AQGUbMxtgVW1pQ/profile-displayphoto-shrink_800_800/0/1697204618915?e=1725494400&v=beta&t=Ys-2pGJ61WJ1aNk70nnigFBARo0tHacRHcNp_qCr_zI',
    isExpansionTileExpanded: false,
    isContainerExpanded: false,
-   additionalData: 'Software developer trained in computer science with a strong affinity for mobile development, especially with the Flutter framework. Always trying to discover new things'
+   additionalData: 'Software developer trained in computer science with a strong affinity for mobile development, especially with the Flutter framework. Always trying to discover new things',
+   isLiked: false,
  );
 
 
